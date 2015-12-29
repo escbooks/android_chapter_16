@@ -12,28 +12,10 @@
         android:textSize="32sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/water_button"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/water" />
-
-    <Button
-        android:id="@+id/coke_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/coke" />
-
-    <Button
-        android:id="@+id/crisps_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/crisps" />
-
-    <Button
-        android:id="@+id/snickers_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/snickers" />
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

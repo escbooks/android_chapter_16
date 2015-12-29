@@ -23,4 +23,10 @@
     <string name="has_sweetener">Has sweetener</string>
     <string name="has_nuts">Has nuts</string>
     <string name="description">Description</string>
+
+    <string name="crisps_description">Yummy yummy crisps!</string>
+    <string name="coke_description">Just as you like it</string>
+    <string name="snickers_description">So sweet!</string>
+    <string name="water_description">Boring still water</string>
+
 </resources>

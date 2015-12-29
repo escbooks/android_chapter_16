@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -12,65 +17,61 @@ public class ProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-        findViewById(R.id.water_button).setOnClickListener(new View.OnClickListener() {
+        List<Product> productList = getProducts();
+
+        ProductsAdapter adapter = new ProductsAdapter(ProductsActivity.this, productList);
+
+        ListView list = (ListView) findViewById(R.id.list_view);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Product productSelected = (Product) adapterView.getItemAtPosition(i);
 
                 Intent intent = new Intent();
-                intent.putExtra("PRODUCT_NAME", getString(R.string.water));
-                intent.putExtra("PRICE", Float.parseFloat(getString(R.string.water_price)));
+                intent.putExtra("PRODUCT_NAME", productSelected.getName());
+                intent.putExtra("PRICE", productSelected.getPrice());
                 intent.putExtra("STOCK", 5);
-
                 setResult(RESULT_OK, intent);
 
                 finish();
             }
         });
+    }
 
-        findViewById(R.id.coke_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    private List<Product> getProducts() {
+        final List<Product> productList = new ArrayList<>();
 
-                Intent intent = new Intent();
-                intent.putExtra("PRODUCT_NAME", getString(R.string.coke));
-                intent.putExtra("PRICE", Float.parseFloat(getString(R.string.coke_price)));
-                intent.putExtra("STOCK", 10);
+        // WATER
+        Product productWater = new Product();
+        productWater.setName(getString(R.string.water));
+        productWater.setPrice(Float.parseFloat(getString(R.string.water_price)));
+        productWater.setDescription(getString(R.string.water_description));
+        productList.add(productWater);
 
-                setResult(RESULT_OK, intent);
+        // COKE
+        Product productCoke = new Product();
+        productCoke.setName(getString(R.string.coke));
+        productCoke.setPrice(Float.parseFloat(getString(R.string.coke_price)));
+        productCoke.setDescription(getString(R.string.coke_description));
+        productList.add(productCoke);
 
-                finish();
-            }
-        });
+        // CRISPS
+        Product productCrisps = new Product();
+        productCrisps.setName(getString(R.string.crisps));
+        productCrisps.setPrice(Float.parseFloat(getString(R.string.crisps_price)));
+        productCrisps.setDescription(getString(R.string.crisps_description));
+        productList.add(productCrisps);
 
-        findViewById(R.id.crisps_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        // SNICKERS
+        Product productSnickers = new Product();
+        productSnickers.setName(getString(R.string.snickers));
+        productSnickers.setPrice(Float.parseFloat(getString(R.string.snickers_price)));
+        productSnickers.setDescription(getString(R.string.snickers_description));
+        productList.add(productSnickers);
 
-                Intent intent = new Intent();
-                intent.putExtra("PRODUCT_NAME", getString(R.string.crisps));
-                intent.putExtra("PRICE", Float.parseFloat(getString(R.string.crisps_price)));
-                intent.putExtra("STOCK", 20);
-
-                setResult(RESULT_OK, intent);
-
-                finish();
-            }
-        });
-
-        findViewById(R.id.snickers_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-                intent.putExtra("PRODUCT_NAME", getString(R.string.snickers));
-                intent.putExtra("PRICE", Float.parseFloat(getString(R.string.snickers_price)));
-                intent.putExtra("STOCK", 15);
-
-                setResult(RESULT_OK, intent);
-
-                finish();
-            }
-        });
-
+        return productList;
     }
 }
